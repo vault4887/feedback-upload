@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NxoraLY Feedback Upload</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial, Helvetica, sans-serif;
+}
+
+body{
+background:#f4f7fa;
+display:flex;
+justify-content:center;
+align-items:center;
+min-height:100vh;
+padding:20px;
+}
+
+.container{
+background:white;
+max-width:500px;
+width:100%;
+padding:35px;
+border-radius:18px;
+box-shadow:0 15px 40px rgba(0,0,0,.1);
+text-align:center;
+}
+
+.logo{
+width:240px;
+margin-bottom:25px;
+}
+
+h2{
+margin-bottom:10px;
+color:#1d1d1f;
+}
+
+p{
+color:#666;
+margin-bottom:25px;
+}
+
+.upload{
+display:block;
+border:2px dashed #cfd8dc;
+border-radius:16px;
+padding:20px;
+margin-bottom:20px;
+text-align:center;
+cursor:pointer;
+transition:.3s;
+background:#fafafa;
+}
+
+.upload:hover{
+border-color:#2f80ed;
+background:#f5faff;
+}
+
+.preview{
+width:100%;
+max-height:220px;
+object-fit:cover;
+border-radius:12px;
+margin-bottom:15px;
+display:none;
+}
+
+button{
+width:100%;
+padding:16px;
+background:#0d6efd;
+color:white;
+border:none;
+border-radius:12px;
+font-size:18px;
+cursor:pointer;
+transition:.3s;
+}
+
+button:hover{
+background:#0b5ed7;
+}
+
+#success{
+display:none;
+}
+
+.success-icon{
+font-size:60px;
+margin-bottom:15px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<img src="logo.png" class="logo">
+
+<div id="form">
+
+<h2>Upload Your Handwritten Feedback</h2>
+
+<p>Please upload the front and back of your handwritten feedback.</p>
+
+<label class="upload">
+
+<img id="frontPreview" class="preview">
+
+<h3 id="frontTitle">🪪 Front</h3>
+
+<p id="frontText">Click anywhere to upload</p>
+
+<input
+id="frontUpload"
+type="file"
+accept="image/*"
+style="display:none;">
+
+</label>
+
+<label class="upload">
+
+<img id="backPreview" class="preview">
+
+<h3 id="backTitle">🪪 Back</h3>
+
+<p id="backText">Click anywhere to upload</p>
+
+<input
+id="backUpload"
+type="file"
+accept="image/*"
+style="display:none;">
+
+</label>
+
+<button onclick="submitForm()">
+Submit Feedback
+</button>
+
+</div>
+
+<div id="success">
+
+<div class="success-icon">✅</div>
+
+<h2>Thank You!</h2>
+
+<p>Your upload has been submitted.</p>
+
+</div>
+
+</div>
+
+<script>
+
+const frontUpload=document.getElementById("frontUpload");
+const backUpload=document.getElementById("backUpload");
+
+document.querySelectorAll(".upload")[0].onclick=()=>frontUpload.click();
+document.querySelectorAll(".upload")[1].onclick=()=>backUpload.click();
+
+frontUpload.onchange=function(){
+const file=this.files[0];
+if(!file) return;
+
+const reader=new FileReader();
+
+reader.onload=function(e){
+document.getElementById("frontPreview").src=e.target.result;
+document.getElementById("frontPreview").style.display="block";
+document.getElementById("frontTitle").innerHTML="✅ Front Uploaded";
+document.getElementById("frontText").innerHTML="";
+}
+
+reader.readAsDataURL(file);
+}
+
+backUpload.onchange=function(){
+const file=this.files[0];
+if(!file) return;
+
+const reader=new FileReader();
+
+reader.onload=function(e){
+document.getElementById("backPreview").src=e.target.result;
+document.getElementById("backPreview").style.display="block";
+document.getElementById("backTitle").innerHTML="✅ Back Uploaded";
+document.getElementById("backText").innerHTML="";
+}
+
+reader.readAsDataURL(file);
+}
+
+function submitForm(){
+
+if(frontUpload.files.length===0 || backUpload.files.length===0){
+alert("Please upload both the Front and Back images.");
+return;
+}
+
+document.getElementById("form").style.display="none";
+document.getElementById("success").style.display="block";
+
+}
+
+</script>
+
+</body>
+</html>
