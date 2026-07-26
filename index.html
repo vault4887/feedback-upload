@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>NxoraLY Feedback</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,sans-serif;background:#eef2f7;display:flex;justify-content:center;align-items:center;min-height:100vh;padding:20px}
+.card{width:100%;max-width:560px;background:#fff;border-radius:22px;padding:32px;box-shadow:0 12px 30px rgba(0,0,0,.12);text-align:center}
+.logo{width:260px;max-width:85%;margin-bottom:10px}
+p{color:#666;font-size:20px}
+.upload{display:block;border:3px dashed #3b82f6;border-radius:18px;background:#f8fbff;padding:28px;margin:20px 0;text-align:center;cursor:pointer}
+.upload input{display:none}
+.upload b{font-size:34px;display:block;margin-bottom:8px}
+.upload span{font-size:22px;color:#666}
+button{width:100%;padding:18px;font-size:28px;background:#2563eb;color:#fff;border:none;border-radius:14px;cursor:pointer}
+#thanks{display:none}
+.check{font-size:80px}
+@media(max-width:600px){
+h1{font-size:26px}
+.upload b{font-size:28px}
+.upload span{font-size:18px}
+button{font-size:22px}
+}
+</style>
+</head>
+<body>
+<div class="card" id="form">
+<img src="logo.png" class="logo">
+<h1>Upload Your Handwritten Feedback</h1>
+<p>Please upload the front and back of your handwritten feedback.</p>
+
+<label class="upload">
+<input type="file" accept="image/*">
+<b>🪪 Front</b>
+<span>Click anywhere to upload</span>
+</label>
+
+<label class="upload" style="border-color:#cfd8dc;background:#fff">
+<input type="file" accept="image/*">
+<b>🪪 Back</b>
+<span>Click anywhere to upload</span>
+</label>
+
+<button onclick="document.getElementById('form').style.display='none';document.getElementById('thanks').style.display='block';window.scrollTo(0,0)">Submit Feedback</button>
+</div>
+
+<div class="card" id="thanks">
+<img src="logo.png" class="logo">
+<div class="check">✅</div>
+<h1>Thank You!</h1>
+<p>Your upload has been submitted.</p>
+</div>
+</body>
+</html>
